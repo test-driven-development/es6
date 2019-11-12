@@ -1,4 +1,14 @@
 describe(`deconstruct arrays `, () => {
+  it(``, function() {
+    const team = ['Joe', 'Dyan', 'Bea', 'Theo'];
+
+    function alphabetizeTeam(team) {
+      return team.sort(); // ['Bea', 'Dyan', 'Joe', 'Theo']
+    }
+
+    alphabetizeTeam(team).should.deepEqual(['Bea', 'Dyan', 'Joe', 'Theo'])
+  })
+
   it(`is like pattern matching`, function() {
     const [a, b, c] = [1, 2, 3]
     a.should.equal(1)
@@ -68,7 +78,7 @@ describe(`deconstruct arrays `, () => {
 
   it(`will deconstruct into object properties`, function() {
     const o = {}
-    ;[o.a, o.b = 42, o.c, ...o.args] = [1, , 3, 4, 5, 6, 7, 8]
+    ;[o.a, o.b = 42, o.c, ...o.args] = [1, undefined, 3, 4, 5, 6, 7, 8]
     o.a.should.equal(1)
     o.b.should.equal(42)
     o.c.should.equal(3)
