@@ -4922,6 +4922,11 @@ quibble@^0.5.6:
     lodash "^4.17.14"
     resolve "^1.11.1"
 
+rambda@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/rambda/-/rambda-4.1.0.tgz#ca8d1a09f5cceed5ec4e971da0e56a372e88674a"
+  integrity sha512-GaenlDXW7jyVhZUhg0/iSss6FmcRa2JKM++ydGEucp4CeMEB0/jLleJfmvXJiB+LMVfTjr1+CceHq4EjPvsK4w==
+
 ramda-adjunct@2.18.0:
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/ramda-adjunct/-/ramda-adjunct-2.18.0.tgz#f8ddf4b596ff012c17fe1e0118262137894512b3"

@@ -34,6 +34,7 @@
     "npm-run-all": "4.1.5",
     "prettier": "1.18.2",
     "pretty-quick": "1.11.1",
+    "rambda": "4.1.0",
     "ramda": "0.26.1",
     "ramda-adjunct": "2.18.0",
     "ramda-fantasy": "0.8.0",
