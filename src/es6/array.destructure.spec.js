@@ -1,3 +1,5 @@
+import should from 'should'
+
 describe(`deconstruct arrays `, () => {
   it(``, function() {
     const team = ['Joe', 'Dyan', 'Bea', 'Theo']
@@ -24,7 +26,7 @@ describe(`deconstruct arrays `, () => {
   })
 
   it(`can have defaults`, function() {
-    // noinspection JSConsecutiveCommasInArrayLiteral
+    /* eslint-disable no-sparse-arrays */
     const [a, b = 42, c] = [1, , 2]
     a.should.equal(1)
     b.should.equal(42)
@@ -40,6 +42,7 @@ describe(`deconstruct arrays `, () => {
     e.should.equal(6)
   })
 
+  /* eslint-disable no-unused-vars */
   it(`will give a type error`, function() {
     ;(() => {
       const [a, b = 42, c] = null
