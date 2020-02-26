@@ -1,12 +1,12 @@
 export function statement(invoice, plays) {
-  function playFor(perf) {
-    return plays[perf['playID']]
+  function playFor(aPerformance) {
+    return plays[aPerformance['playID']]
   }
 
-  function amountFor(aPerformance, play) {
+  function amountFor(aPerformance) {
     let result = 0
 
-    switch (play.type) {
+    switch (playFor(aPerformance).type) {
       case 'tragedy':
         result = 40000
         if (aPerformance['audience'] > 30) {
