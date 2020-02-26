@@ -44,10 +44,15 @@ export function statement(invoice, plays) {
     }).format(aNumber)
   }
 
-  let volumeCredits = 0
-  for (let perf of invoice['performances']) {
-    volumeCredits += volumeCreditsFor(perf)
+  function totalVolumeCredits() {
+    let volumeCredits = 0
+    for (let perf of invoice['performances']) {
+      volumeCredits += volumeCreditsFor(perf)
+    }
+    return volumeCredits
   }
+
+  let volumeCredits = totalVolumeCredits()
 
   let totalAmount = 0
   let result = `Statement for ${invoice['customer']}\n`
