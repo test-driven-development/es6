@@ -30,6 +30,7 @@ export function statement(invoice, plays) {
   function volumeCreditsFor(aPerformance) {
     let result = 0
     result += Math.max(aPerformance['audience'] - 30, 0)
+
     if (playFor(aPerformance).type === 'comedy')
       result += Math.floor(aPerformance['audience'] / 5)
 
@@ -45,18 +46,14 @@ export function statement(invoice, plays) {
   }
 
   function totalVolumeCredits() {
-    let volumeCredits = 0
-    for (let perf of invoice['performances']) {
-      volumeCredits += volumeCreditsFor(perf)
-    }
-    return volumeCredits
+    let credits = 0
+    for (let perf of invoice['performances']) credits += volumeCreditsFor(perf)
+    return credits
   }
 
-  function subTotal() {
+  function total() {
     let totalAmount = 0
-    for (let perf of invoice['performances']) {
-      totalAmount += amountFor(perf)
-    }
+    for (let perf of invoice['performances']) totalAmount += amountFor(perf)
     return totalAmount
   }
 
@@ -68,7 +65,7 @@ export function statement(invoice, plays) {
     } seats)\n`
   }
 
-  result += `Amount owed is ${usd(subTotal() / 100)}\n`
+  result += `Amount owed is ${usd(total() / 100)}\n`
   result += `You earned ${totalVolumeCredits()} credits\n`
   return result
 }
