@@ -1,9 +1,9 @@
 describe(`deconstruct arrays `, () => {
   it(``, function() {
-    const team = ['Joe', 'Dyan', 'Bea', 'Theo'];
+    const team = ['Joe', 'Dyan', 'Bea', 'Theo']
 
     function alphabetizeTeam(team) {
-      return team.sort(); // ['Bea', 'Dyan', 'Joe', 'Theo']
+      return team.sort() // ['Bea', 'Dyan', 'Joe', 'Theo']
     }
 
     alphabetizeTeam(team).should.deepEqual(['Bea', 'Dyan', 'Joe', 'Theo'])
@@ -24,6 +24,7 @@ describe(`deconstruct arrays `, () => {
   })
 
   it(`can have defaults`, function() {
+    // noinspection JSConsecutiveCommasInArrayLiteral
     const [a, b = 42, c] = [1, , 2]
     a.should.equal(1)
     b.should.equal(42)
