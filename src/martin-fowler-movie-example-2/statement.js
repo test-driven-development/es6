@@ -55,7 +55,7 @@ export function statement(invoice, plays) {
   function subTotal() {
     let totalAmount = 0
     for (let perf of invoice['performances']) {
-      totalAmount += amountFor(perf, playFor(perf))
+      totalAmount += amountFor(perf)
     }
     return totalAmount
   }
@@ -63,9 +63,9 @@ export function statement(invoice, plays) {
   let result = `Statement for ${invoice['customer']}\n`
   for (let perf of invoice['performances']) {
     // print line for this order
-    result += `  ${playFor(perf).name}: ${usd(
-      amountFor(perf, playFor(perf)) / 100,
-    )} (${perf['audience']} seats)\n`
+    result += `  ${playFor(perf).name}: ${usd(amountFor(perf) / 100)} (${
+      perf['audience']
+    } seats)\n`
   }
 
   result += `Amount owed is ${usd(subTotal() / 100)}\n`
