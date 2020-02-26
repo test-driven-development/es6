@@ -36,11 +36,7 @@ export function statement(invoice, plays) {
     return result
   }
 
-  let totalAmount = 0
-  let volumeCredits = 0
-  let result = `Statement for ${invoice['customer']}\n`
-
-  function format(aNumber) {
+  function usd(aNumber) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -48,17 +44,22 @@ export function statement(invoice, plays) {
     }).format(aNumber)
   }
 
+  let totalAmount = 0
+  let volumeCredits = 0
+  let result = `Statement for ${invoice['customer']}\n`
+
   for (let perf of invoice['performances']) {
     volumeCredits += volumeCreditsFor(perf)
 
     // print line for this order
-    result += `  ${playFor(perf).name}: ${format(
+    result += `  ${playFor(perf).name}: ${usd(
       amountFor(perf, playFor(perf)) / 100,
     )} (${perf['audience']} seats)\n`
 
     totalAmount += amountFor(perf, playFor(perf))
   }
-  result += `Amount owed is ${format(totalAmount / 100)}\n`
+
+  result += `Amount owed is ${usd(totalAmount / 100)}\n`
   result += `You earned ${volumeCredits} credits\n`
   return result
 }
