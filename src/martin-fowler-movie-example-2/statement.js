@@ -26,7 +26,6 @@ export function statement(invoice, plays) {
 
     return result
   }
-
   let totalAmount = 0
   let volumeCredits = 0
   let result = `Statement for ${invoice['customer']}\n`
@@ -38,8 +37,6 @@ export function statement(invoice, plays) {
   }).format
 
   for (let perf of invoice['performances']) {
-    let thisAmount = amountFor(perf, playFor(perf))
-
     // add volume credits
     volumeCredits += Math.max(perf['audience'] - 30, 0)
     // add extra credit for every ten comedy attendees
@@ -47,10 +44,11 @@ export function statement(invoice, plays) {
       volumeCredits += Math.floor(perf['audience'] / 5)
 
     // print line for this order
-    result += `  ${playFor(perf).name}: ${format(thisAmount / 100)} (${
-      perf['audience']
-    } seats)\n`
-    totalAmount += thisAmount
+    result += `  ${playFor(perf).name}: ${format(
+      amountFor(perf, playFor(perf)) / 100,
+    )} (${perf['audience']} seats)\n`
+
+    totalAmount += amountFor(perf, playFor(perf))
   }
   result += `Amount owed is ${format(totalAmount / 100)}\n`
   result += `You earned ${volumeCredits} credits\n`
