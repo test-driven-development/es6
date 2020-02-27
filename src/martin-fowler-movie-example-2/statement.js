@@ -1,10 +1,11 @@
 export function statement(invoice, plays) {
   const statementData = {}
+  statementData.customer = invoice.customer
   return renterPlainText(invoice, plays, statementData)
 }
 
 function renterPlainText(invoice, plays, data) {
-  let result = `Statement for ${invoice['customer']}\n`
+  let result = `Statement for ${data.customer}\n`
   const performances = invoice['performances']
   for (let performance of performances) {
     const play = playFor(performance).name
