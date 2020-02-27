@@ -1,12 +1,13 @@
 export function statement(invoice, plays) {
   const config = {}
   config.customer = invoice.customer
+  config.performances = invoice.performances
   return renterPlainText(invoice, plays, config)
 }
 
 function renterPlainText(invoice, plays, config) {
   let result = `Statement for ${config.customer}\n`
-  const performances = invoice['performances']
+  const performances = config.performances
   for (let performance of performances) {
     const play = playFor(performance).name
     const amount = amountFor(performance)
