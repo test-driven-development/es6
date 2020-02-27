@@ -1,20 +1,4 @@
 export function statement(invoice, plays) {
-  const config = {}
-  config.customer = invoice.customer
-
-  config.performances = invoice.performances.map(p => {
-    const performance = {...p}
-    performance.play = playFor(performance)
-    performance.amount = amountFor(performance)
-    performance.volumeCredits = volumeCreditsFor(performance)
-    return performance
-  })
-
-  config.totalVolumeCredits = totalVolumeCredits(config.performances)
-  config.total = total(config.performances)
-
-  return renderPlainText(invoice, plays, config)
-
   function playFor(performance) {
     return plays[performance.playID]
   }
@@ -64,6 +48,22 @@ export function statement(invoice, plays) {
       return p.amount + acc
     }, 0)
   }
+
+  const config = {}
+  config.customer = invoice.customer
+
+  config.performances = invoice.performances.map(p => {
+    const performance = {...p}
+    performance.play = playFor(performance)
+    performance.amount = amountFor(performance)
+    performance.volumeCredits = volumeCreditsFor(performance)
+    return performance
+  })
+
+  config.totalVolumeCredits = totalVolumeCredits(config.performances)
+  config.total = total(config.performances)
+
+  return renderPlainText(invoice, plays, config)
 }
 
 function renderPlainText(invoice, plays, config) {
