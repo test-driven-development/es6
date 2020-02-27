@@ -54,15 +54,15 @@ export function statement(invoice, plays) {
   }
 
   function totalVolumeCredits(performances) {
-    let credits = 0
-    for (let perf of performances) credits += perf.volumeCredits
-    return credits
+    return performances.reduce((acc, p) => {
+      return p.volumeCredits + acc
+    }, 0)
   }
 
   function total(performances) {
-    let totalAmount = 0
-    for (let perf of performances) totalAmount += perf.amount
-    return totalAmount
+    return performances.reduce((acc, p) => {
+      return p.amount + acc
+    }, 0)
   }
 }
 
