@@ -1,7 +1,7 @@
 export function statement(invoice, plays) {
   const config = {}
   config.customer = invoice.customer
-  config.performances = invoice.performances
+  config.performances = invoice.performances.map(p => ({...p}))
   return renterPlainText(invoice, plays, config)
 }
 
