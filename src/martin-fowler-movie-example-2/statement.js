@@ -4,11 +4,36 @@ export function statement(invoice, plays) {
 
   config.performances = invoice.performances.map(p => {
     const performance = {...p}
-    performance.play = playFor(p)
+    performance.play = playFor(performance)
+    performance.amount = amountFor(performance)
     return performance
 
     function playFor(performance) {
       return plays[performance.playID]
+    }
+
+    function amountFor(aPerformance) {
+      let result = 0
+
+      switch (aPerformance.play.type) {
+        case 'tragedy':
+          result = 40000
+          if (aPerformance['audience'] > 30) {
+            result += 1000 * (aPerformance['audience'] - 30)
+          }
+          break
+        case 'comedy':
+          result = 30000
+          if (aPerformance['audience'] > 20) {
+            result += 10000 + 500 * (aPerformance['audience'] - 20)
+          }
+          result += 300 * aPerformance['audience']
+          break
+        default:
+          throw new Error(`unknown type: ${aPerformance.play.type}`)
+      }
+
+      return result
     }
   })
 
@@ -20,7 +45,7 @@ function renterPlainText(invoice, plays, config) {
   const performances = config.performances
   for (let performance of performances) {
     const play = performance.play.name
-    const amount = amountFor(performance)
+    const amount = performance.amount
     const audience = performance['audience']
 
     result += `  ${play}: ${usd(amount / 100)} (${audience} seats)\n`
@@ -29,30 +54,6 @@ function renterPlainText(invoice, plays, config) {
   result += `Amount owed is ${usd(total() / 100)}\n`
   result += `You earned ${totalVolumeCredits()} credits\n`
   return result
-
-  function amountFor(aPerformance) {
-    let result = 0
-
-    switch (aPerformance.play.type) {
-      case 'tragedy':
-        result = 40000
-        if (aPerformance['audience'] > 30) {
-          result += 1000 * (aPerformance['audience'] - 30)
-        }
-        break
-      case 'comedy':
-        result = 30000
-        if (aPerformance['audience'] > 20) {
-          result += 10000 + 500 * (aPerformance['audience'] - 20)
-        }
-        result += 300 * aPerformance['audience']
-        break
-      default:
-        throw new Error(`unknown type: ${aPerformance.play.type}`)
-    }
-
-    return result
-  }
 
   function volumeCreditsFor(aPerformance) {
     let result = 0
@@ -80,7 +81,7 @@ function renterPlainText(invoice, plays, config) {
 
   function total() {
     let totalAmount = 0
-    for (let perf of performances) totalAmount += amountFor(perf)
+    for (let perf of performances) totalAmount += perf.amount
     return totalAmount
   }
 }
