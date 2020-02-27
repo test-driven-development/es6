@@ -66,13 +66,13 @@ function configure(plays, invoice) {
 }
 
 export function statement(invoice, plays) {
-  const config = configure(plays, invoice)
-  return renderPlainText(invoice, plays, config)
+  return renderPlainText(invoice, plays, configure(plays, invoice))
 }
 
 function renderPlainText(invoice, plays, config) {
   let result = `Statement for ${config.customer}\n`
   const performances = config.performances
+
   for (let performance of performances) {
     const play = performance.play.name
     const amount = performance.amount
