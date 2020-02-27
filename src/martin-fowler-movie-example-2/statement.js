@@ -1,8 +1,9 @@
 export function statement(invoice, plays) {
-  return renterPlainText(invoice, plays)
+  const statementData = {}
+  return renterPlainText(invoice, plays, statementData)
 }
 
-function renterPlainText(invoice, plays) {
+function renterPlainText(invoice, plays, data) {
   let result = `Statement for ${invoice['customer']}\n`
   const performances = invoice['performances']
   for (let performance of performances) {
