@@ -8,16 +8,6 @@ export function statement(invoice, plays) {
     performance.amount = amountFor(performance)
     performance.volumeCredits = volumeCreditsFor(performance)
     return performance
-
-    function volumeCreditsFor(aPerformance) {
-      let result = 0
-      result += Math.max(aPerformance['audience'] - 30, 0)
-
-      if (aPerformance.play.type === 'comedy')
-        result += Math.floor(aPerformance['audience'] / 5)
-
-      return result
-    }
   })
 
   return renterPlainText(invoice, plays, config)
@@ -46,6 +36,16 @@ export function statement(invoice, plays) {
       default:
         throw new Error(`unknown type: ${aPerformance.play.type}`)
     }
+
+    return result
+  }
+
+  function volumeCreditsFor(aPerformance) {
+    let result = 0
+    result += Math.max(aPerformance['audience'] - 30, 0)
+
+    if (aPerformance.play.type === 'comedy')
+      result += Math.floor(aPerformance['audience'] / 5)
 
     return result
   }
