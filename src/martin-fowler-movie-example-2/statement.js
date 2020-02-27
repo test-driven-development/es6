@@ -9,10 +9,6 @@ export function statement(invoice, plays) {
     performance.volumeCredits = volumeCreditsFor(performance)
     return performance
 
-    function playFor(performance) {
-      return plays[performance.playID]
-    }
-
     function amountFor(aPerformance) {
       let result = 0
 
@@ -49,6 +45,10 @@ export function statement(invoice, plays) {
   })
 
   return renterPlainText(invoice, plays, config)
+
+  function playFor(performance) {
+    return plays[performance.playID]
+  }
 }
 
 function renterPlainText(invoice, plays, config) {
