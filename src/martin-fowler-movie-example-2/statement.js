@@ -11,8 +11,9 @@ export function statement(invoice, plays) {
   })
 
   config.totalVolumeCredits = totalVolumeCredits(config.performances)
+  config.total = total(config.performances)
 
-  return renterPlainText(invoice, plays, config)
+  return renderPlainText(invoice, plays, config)
 
   function playFor(performance) {
     return plays[performance.playID]
@@ -57,9 +58,15 @@ export function statement(invoice, plays) {
     for (let perf of performances) credits += perf.volumeCredits
     return credits
   }
+
+  function total(performances) {
+    let totalAmount = 0
+    for (let perf of performances) totalAmount += perf.amount
+    return totalAmount
+  }
 }
 
-function renterPlainText(invoice, plays, config) {
+function renderPlainText(invoice, plays, config) {
   let result = `Statement for ${config.customer}\n`
   const performances = config.performances
   for (let performance of performances) {
@@ -70,7 +77,7 @@ function renterPlainText(invoice, plays, config) {
     result += `  ${play}: ${usd(amount / 100)} (${audience} seats)\n`
   }
 
-  result += `Amount owed is ${usd(total() / 100)}\n`
+  result += `Amount owed is ${usd(config.total / 100)}\n`
   result += `You earned ${config.totalVolumeCredits} credits\n`
   return result
 
@@ -80,11 +87,5 @@ function renterPlainText(invoice, plays, config) {
       currency: 'USD',
       minimumFractionDigits: 2,
     }).format(aNumber)
-  }
-
-  function total() {
-    let totalAmount = 0
-    for (let perf of performances) totalAmount += perf.amount
-    return totalAmount
   }
 }
