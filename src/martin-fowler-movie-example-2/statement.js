@@ -1,9 +1,12 @@
 export function statement(invoice, plays) {
   let result = `Statement for ${invoice['customer']}\n`
-  for (let perf of invoice['performances']) {
-    result += `  ${playFor(perf).name}: ${usd(amountFor(perf) / 100)} (${
-      perf['audience']
-    } seats)\n`
+  const performances = invoice['performances']
+  for (let performance of performances) {
+    const play = playFor(performance).name
+    const amount = amountFor(performance)
+    const audience = performance['audience']
+
+    result += `  ${play}: ${usd(amount / 100)} (${audience} seats)\n`
   }
 
   result += `Amount owed is ${usd(total() / 100)}\n`
@@ -58,13 +61,13 @@ export function statement(invoice, plays) {
 
   function totalVolumeCredits() {
     let credits = 0
-    for (let perf of invoice['performances']) credits += volumeCreditsFor(perf)
+    for (let perf of performances) credits += volumeCreditsFor(perf)
     return credits
   }
 
   function total() {
     let totalAmount = 0
-    for (let perf of invoice['performances']) totalAmount += amountFor(perf)
+    for (let perf of performances) totalAmount += amountFor(perf)
     return totalAmount
   }
 }
