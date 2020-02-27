@@ -1,7 +1,17 @@
 export function statement(invoice, plays) {
   const config = {}
   config.customer = invoice.customer
-  config.performances = invoice.performances.map(p => ({...p}))
+
+  config.performances = invoice.performances.map(p => {
+    const performance = {...p}
+    performance.play = playFor(p)
+    return performance
+
+    function playFor(performance) {
+      return plays[performance.playID]
+    }
+  })
+
   return renterPlainText(invoice, plays, config)
 }
 
@@ -9,7 +19,7 @@ function renterPlainText(invoice, plays, config) {
   let result = `Statement for ${config.customer}\n`
   const performances = config.performances
   for (let performance of performances) {
-    const play = playFor(performance).name
+    const play = performance.play.name
     const amount = amountFor(performance)
     const audience = performance['audience']
 
@@ -20,14 +30,10 @@ function renterPlainText(invoice, plays, config) {
   result += `You earned ${totalVolumeCredits()} credits\n`
   return result
 
-  function playFor(aPerformance) {
-    return plays[aPerformance['playID']]
-  }
-
   function amountFor(aPerformance) {
     let result = 0
 
-    switch (playFor(aPerformance).type) {
+    switch (aPerformance.play.type) {
       case 'tragedy':
         result = 40000
         if (aPerformance['audience'] > 30) {
@@ -42,7 +48,7 @@ function renterPlainText(invoice, plays, config) {
         result += 300 * aPerformance['audience']
         break
       default:
-        throw new Error(`unknown type: ${playFor(aPerformance).type}`)
+        throw new Error(`unknown type: ${aPerformance.play.type}`)
     }
 
     return result
@@ -52,7 +58,7 @@ function renterPlainText(invoice, plays, config) {
     let result = 0
     result += Math.max(aPerformance['audience'] - 30, 0)
 
-    if (playFor(aPerformance).type === 'comedy')
+    if (aPerformance.play.type === 'comedy')
       result += Math.floor(aPerformance['audience'] / 5)
 
     return result
