@@ -6,6 +6,7 @@ export function statement(invoice, plays) {
     const performance = {...p}
     performance.play = playFor(performance)
     performance.amount = amountFor(performance)
+    performance.volumeCredits = volumeCreditsFor(performance)
     return performance
 
     function playFor(performance) {
@@ -35,6 +36,16 @@ export function statement(invoice, plays) {
 
       return result
     }
+
+    function volumeCreditsFor(aPerformance) {
+      let result = 0
+      result += Math.max(aPerformance['audience'] - 30, 0)
+
+      if (aPerformance.play.type === 'comedy')
+        result += Math.floor(aPerformance['audience'] / 5)
+
+      return result
+    }
   })
 
   return renterPlainText(invoice, plays, config)
@@ -55,16 +66,6 @@ function renterPlainText(invoice, plays, config) {
   result += `You earned ${totalVolumeCredits()} credits\n`
   return result
 
-  function volumeCreditsFor(aPerformance) {
-    let result = 0
-    result += Math.max(aPerformance['audience'] - 30, 0)
-
-    if (aPerformance.play.type === 'comedy')
-      result += Math.floor(aPerformance['audience'] / 5)
-
-    return result
-  }
-
   function usd(aNumber) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -75,7 +76,7 @@ function renterPlainText(invoice, plays, config) {
 
   function totalVolumeCredits() {
     let credits = 0
-    for (let perf of performances) credits += volumeCreditsFor(perf)
+    for (let perf of performances) credits += perf.volumeCredits
     return credits
   }
 
