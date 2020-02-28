@@ -10,7 +10,7 @@ function renderHtml(config) {
     const perf = config.performances[0]
     return (
       `  <tr><td>${perf.play.name}</td><td>${perf.audience}</td>` +
-      `<td>$650.00</td></tr>\n`
+      `<td>${usd(perf.amount / 100)}</td></tr>\n`
     )
   }
 
