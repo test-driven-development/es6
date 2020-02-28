@@ -9,7 +9,8 @@ function renderHtml(config) {
   function printRow(config) {
     const perf = config.performances[0]
     return (
-      `  <tr><td>${perf.play.name}</td><td>55</td>` + `<td>$650.00</td></tr>\n`
+      `  <tr><td>${perf.play.name}</td><td>${perf.audience}</td>` +
+      `<td>$650.00</td></tr>\n`
     )
   }
 
