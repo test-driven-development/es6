@@ -28,9 +28,8 @@ describe(`html statement`, () => {
   })
 
   it(`prints the header row`, () => {
-    htmlStatement(invoices[0], plays).should.containEql(
-      `<tr><th>play</th><th>seats</th><th>cost</th></tr>`,
-    )
+    const headerRow = `<tr><th>play</th><th>seats</th><th>cost</th></tr>`
+    htmlStatement(invoices[0], plays).should.containEql(headerRow)
   })
 
   it(`prints the table end`, () => {
@@ -38,14 +37,12 @@ describe(`html statement`, () => {
   })
 
   it(`prints the total in the footer`, () => {
-    htmlStatement(invoices[0], plays).should.containEql(
-      `<p>Amount owed is <em>$1,730.00</em></p>\n`,
-    )
+    const totalFooter = `<p>Amount owed is <em>$1,730.00</em></p>\n`
+    htmlStatement(invoices[0], plays).should.containEql(totalFooter)
   })
 
   it(`prints the total volume credits in the footer`, () => {
-    htmlStatement(invoices[0], plays).should.containEql(
-      `<p>You earned <em>47</em> credits</p>\n`,
-    )
+    const creditsFooter = `<p>You earned <em>47</em> credits</p>\n`
+    htmlStatement(invoices[0], plays).should.containEql(creditsFooter)
   })
 })
