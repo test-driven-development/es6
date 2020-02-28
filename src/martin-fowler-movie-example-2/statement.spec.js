@@ -1,4 +1,5 @@
 import {statement} from './statement'
+import {htmlStatement} from './html-statement'
 import plays from './plays'
 import invoices from './invoices'
 
