@@ -20,7 +20,7 @@ function renderHtml(config) {
     `<tr><th>play</th><th>seats</th><th>cost</th></tr>\n` +
     printRow(config) +
     `</table>\n` +
-    `<p>You earned <em>${config.totalVolumeCredits}</em> credits</p>\n` +
-    `<p>Amount owed is <em>${usd(config.total / 100)}</em></p>\n`
+    `<p>Amount owed is <em>${usd(config.total / 100)}</em></p>\n` +
+    `<p>You earned <em>${config.totalVolumeCredits}</em> credits</p>\n`
   )
 }
