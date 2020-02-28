@@ -22,4 +22,10 @@ describe(`html statement`, () => {
       `<h1>Statement for BigCo</h1>`,
     )
   })
+
+  it(`prints the total in the footer`, () => {
+    htmlStatement(invoices[0], plays).should.containEql(
+      `<p>Amount owed is <em>$1,730.00</em></p>\n`,
+    )
+  })
 })
