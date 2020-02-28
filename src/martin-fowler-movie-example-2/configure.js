@@ -47,17 +47,17 @@ export function configure(plays, invoice) {
     }, 0)
   }
 
-  const config = {}
-  config.customer = invoice.customer
-
-  config.performances = invoice.performances.map(p => {
+  function configurePerformance(p) {
     const performance = shallowClone(p)
     performance.play = playFor(performance)
     performance.amount = amountFor(performance)
     performance.volumeCredits = volumeCreditsFor(performance)
     return performance
-  })
+  }
 
+  const config = {}
+  config.customer = invoice.customer
+  config.performances = invoice.performances.map(configurePerformance)
   config.totalVolumeCredits = totalVolumeCredits(config.performances)
   config.total = total(config.performances)
   return config
