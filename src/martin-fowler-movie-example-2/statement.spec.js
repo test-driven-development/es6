@@ -28,4 +28,10 @@ describe(`html statement`, () => {
       `<p>Amount owed is <em>$1,730.00</em></p>\n`,
     )
   })
+
+  it(`prints the total volume credits in the footer`, () => {
+    htmlStatement(invoices[0], plays).should.containEql(
+      `<p>You earned <em>47</em> credits</p>\n`,
+    )
+  })
 })
