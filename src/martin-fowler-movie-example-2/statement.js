@@ -1,12 +1,5 @@
 import {configure} from './configure'
-
-function usd(aNumber) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  }).format(aNumber)
-}
+import {usd} from './usd'
 
 export function statement(invoice, plays) {
   return renderPlainText(invoice, plays, configure(plays, invoice))
