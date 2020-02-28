@@ -7,10 +7,13 @@ export function htmlStatement(invoice, plays) {
 
 function renderHtml(config) {
   function printRow(config) {
-    const perf = config.performances[0]
-    return (
-      `  <tr><td>${perf.play.name}</td><td>${perf.audience}</td>` +
-      `<td>${usd(perf.amount / 100)}</td></tr>\n`
+    const perf = config.performances
+    return perf.reduce(
+      (acc, p) =>
+        `  <tr><td>${p.play.name}</td><td>${p.audience}</td>` +
+        `<td>${usd(p.amount / 100)}</td></tr>\n` +
+        acc,
+      '',
     )
   }
 
