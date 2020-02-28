@@ -14,3 +14,11 @@ describe(`statement is characterized`, () => {
     )
   })
 })
+
+describe(`html statement`, () => {
+  it(`prints a header`, function() {
+    htmlStatement(invoices[0], plays).should.containEql(
+      `<h1>Statement for BigCo</h1>`,
+    )
+  })
+})
