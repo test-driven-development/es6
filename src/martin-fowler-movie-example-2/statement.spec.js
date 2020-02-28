@@ -32,7 +32,7 @@ describe(`html statement`, () => {
     htmlStatement(invoices[0], plays).should.containEql(headerRow)
   })
 
-  it(`prints the first row`, () => {
+  it(`prints the first row play and seats`, () => {
     htmlStatement(invoices[0], plays).should.containEql(
       `  <tr><td>Hamlet</td><td>55</td>`,
     )
