@@ -27,6 +27,12 @@ describe(`html statement`, () => {
     htmlStatement(invoices[0], plays).should.containEql(`<table>\n`)
   })
 
+  it(`prints the header row`, () => {
+    htmlStatement(invoices[0], plays).should.containEql(
+      `<tr><th>play</th><th>seats</th><th>cost</th></tr>`,
+    )
+  })
+
   it(`prints the table end`, () => {
     htmlStatement(invoices[0], plays).should.containEql(`</table>\n`)
   })
