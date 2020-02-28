@@ -1,3 +1,5 @@
+const shallowClone = p => ({...p})
+
 export function configure(plays, invoice) {
   function playFor(performance) {
     return plays[performance.playID]
@@ -49,7 +51,7 @@ export function configure(plays, invoice) {
   config.customer = invoice.customer
 
   config.performances = invoice.performances.map(p => {
-    const performance = {...p}
+    const performance = shallowClone(p)
     performance.play = playFor(performance)
     performance.amount = amountFor(performance)
     performance.volumeCredits = volumeCreditsFor(performance)
