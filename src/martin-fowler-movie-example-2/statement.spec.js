@@ -28,7 +28,7 @@ describe(`html statement`, () => {
   })
 
   it(`prints the header row`, () => {
-    const headerRow = `<tr><th>play</th><th>seats</th><th>cost</th></tr>`
+    const headerRow = `<tr><th>play</th><th>seats</th><th>cost</th></tr>\n`
     htmlStatement(invoices[0], plays).should.containEql(headerRow)
   })
 
