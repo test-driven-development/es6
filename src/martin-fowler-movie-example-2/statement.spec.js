@@ -4,7 +4,7 @@ import plays from './plays'
 import invoices from './invoices'
 
 describe(`statement is characterized`, () => {
-  it(`as follows`, function() {
+  it(`as follows`, () => {
     statement(invoices[0], plays).should.equal(
       'Statement for BigCo\n' +
         '  Hamlet: $650.00 (55 seats)\n' +
@@ -17,7 +17,7 @@ describe(`statement is characterized`, () => {
 })
 
 describe(`html statement`, () => {
-  it(`prints a header`, function() {
+  it(`prints a header`, () => {
     htmlStatement(invoices[0], plays).should.containEql(
       `<h1>Statement for BigCo</h1>`,
     )
