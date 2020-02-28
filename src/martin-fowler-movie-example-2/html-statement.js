@@ -1,3 +1,9 @@
-export function htmlStatement() {
-  return `<h1>Statement for BigCo</h1>`
+import {configure} from './configure'
+
+export function htmlStatement(invoice, plays) {
+  return renderHtml(configure(plays, invoice))
+}
+
+function renderHtml(config) {
+  return `<h1>Statement for ${config.customer}</h1>\n`
 }
