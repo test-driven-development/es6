@@ -38,6 +38,12 @@ describe(`html statement`, () => {
     )
   })
 
+  it(`prints the first row cost`, () => {
+    htmlStatement(invoices[0], plays).should.containEql(
+      `<td>$650.00</td></tr>\n`,
+    )
+  })
+
   it(`prints the table end`, () => {
     htmlStatement(invoices[0], plays).should.containEql(`</table>\n`)
   })
