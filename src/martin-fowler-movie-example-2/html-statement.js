@@ -1,1 +1,3 @@
-export function htmlStatement() {}
+export function htmlStatement() {
+  return ''
+}
