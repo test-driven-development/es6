@@ -4,35 +4,35 @@ export function configure(plays, invoice) {
   function playFor(performance) {
     return plays[performance.playID]
   }
-  function amountFor(aPerformance) {
+  function amountFor(performance) {
     let result = 0
 
-    switch (aPerformance.play.type) {
+    switch (performance.play.type) {
       case 'tragedy':
         result = 40000
-        if (aPerformance['audience'] > 30) {
-          result += 1000 * (aPerformance['audience'] - 30)
+        if (performance['audience'] > 30) {
+          result += 1000 * (performance['audience'] - 30)
         }
         break
       case 'comedy':
         result = 30000
-        if (aPerformance['audience'] > 20) {
-          result += 10000 + 500 * (aPerformance['audience'] - 20)
+        if (performance['audience'] > 20) {
+          result += 10000 + 500 * (performance['audience'] - 20)
         }
-        result += 300 * aPerformance['audience']
+        result += 300 * performance['audience']
         break
       default:
-        throw new Error(`unknown type: ${aPerformance.play.type}`)
+        throw new Error(`unknown type: ${performance.play.type}`)
     }
 
     return result
   }
-  function volumeCreditsFor(aPerformance) {
+  function volumeCreditsFor(performance) {
     let result = 0
-    result += Math.max(aPerformance['audience'] - 30, 0)
+    result += Math.max(performance['audience'] - 30, 0)
 
-    if (aPerformance.play.type === 'comedy')
-      result += Math.floor(aPerformance['audience'] / 5)
+    if (performance.play.type === 'comedy')
+      result += Math.floor(performance['audience'] / 5)
 
     return result
   }
