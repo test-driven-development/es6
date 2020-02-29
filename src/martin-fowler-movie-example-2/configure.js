@@ -1,5 +1,11 @@
 const shallowClone = obj => ({...obj})
 
+/* eslint-disable no-unused-vars */
+function performanceCalculator(performance_, play_) {
+  const play = play_
+  const performance = performance_
+}
+
 export function configure(plays, invoice) {
   function playFor(performance) {
     return plays[performance.playID]
