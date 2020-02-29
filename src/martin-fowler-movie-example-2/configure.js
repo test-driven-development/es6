@@ -12,9 +12,23 @@ const calculatorFactoryMake = (performance, play) => {
   }
 }
 const comedyCalculator = calculator => {
+  const performance = calculator.performance
+  const play = calculator.play
+  const audience = performance.audience
+
+  // eslint-disable-next-line no-unused-vars
+  function amountForComedy() {
+    let amount = 30000
+    if (audience > 20) {
+      amount += 10000 + 500 * (audience - 20)
+    }
+    amount += 300 * audience
+    return amount
+  }
+
   return {
-    play: calculator.play,
-    performance: calculator.performance,
+    play,
+    performance,
     amount: calculator.amount,
     volumeCredits: calculator.volumeCredits,
   }
