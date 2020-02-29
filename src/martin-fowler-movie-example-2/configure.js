@@ -1,9 +1,13 @@
 const shallowClone = obj => ({...obj})
 
-/* eslint-disable no-unused-vars */
 function performanceCalculator(performance_, play_) {
   const play = play_
   const performance = performance_
+
+  return {
+    play,
+    performance,
+  }
 }
 
 export function configure(plays, invoice) {
@@ -55,7 +59,8 @@ export function configure(plays, invoice) {
 
   function configurePerformance(p) {
     const performance = shallowClone(p)
-    performance.play = playFor(performance)
+    const calculator = performanceCalculator(performance, playFor(performance))
+    performance.play = calculator.play
     performance.amount = amountFor(performance)
     performance.volumeCredits = volumeCreditsFor(performance)
     return performance
