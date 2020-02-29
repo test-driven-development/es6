@@ -24,14 +24,13 @@ const tragedyCalculator = calculator => {
   const play = calculator.play
   const audience = performance.audience
 
-  function amountForTragedy() {
-    return audience > 30 ? 40000 + 1000 * (audience - 30) : 40000
-  }
+  const amountForTragedy = (() =>
+    audience > 30 ? 40000 + 1000 * (audience - 30) : 40000)()
 
   return {
     play,
     performance,
-    amount: amountForTragedy(),
+    amount: amountForTragedy,
     volumeCredits: calculator.volumeCredits,
   }
 }
