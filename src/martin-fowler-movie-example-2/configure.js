@@ -38,9 +38,6 @@ export function configure(plays, invoice) {
   function playFor(performance) {
     return plays[performance.playID]
   }
-  function amountFor(performance) {
-    return performanceCalculator(performance, playFor(performance)).amount
-  }
   function volumeCreditsFor(performance) {
     let result = 0
     result += Math.max(performance['audience'] - 30, 0)
@@ -65,7 +62,7 @@ export function configure(plays, invoice) {
     const performance = shallowClone(p)
     const calculator = performanceCalculator(performance, playFor(performance))
     performance.play = calculator.play
-    performance.amount = amountFor(performance)
+    performance.amount = calculator.amount
     performance.volumeCredits = volumeCreditsFor(performance)
     return performance
   }
