@@ -12,7 +12,7 @@ function renderPlainText(invoice, plays, config) {
   for (let performance of performances) {
     const play = performance.play.name
     const amount = performance.amount
-    const audience = performance['audience']
+    const audience = performance.audience
 
     result += `  ${play}: ${usd(amount / 100)} (${audience} seats)\n`
   }

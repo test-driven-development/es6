@@ -44,7 +44,7 @@ function performanceCalculator(performance_, play_) {
         break
       case 'comedy':
         amount = 30000
-        if (performance['audience'] > 20) {
+        if (performance.audience > 20) {
           amount += 10000 + 500 * (performance.audience - 20)
         }
         amount += 300 * performance.audience
