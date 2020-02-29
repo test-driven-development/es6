@@ -50,13 +50,8 @@ export function configure(plays, invoice) {
     return plays[performance.playID]
   }
   function volumeCreditsFor(performance) {
-    let result = 0
-    result += Math.max(performance['audience'] - 30, 0)
-
-    if (performance.play.type === 'comedy')
-      result += Math.floor(performance['audience'] / 5)
-
-    return result
+    return performanceCalculator(performance, playFor(performance))
+      .volumeCredits
   }
   function totalVolumeCredits(performances) {
     return performances.reduce((acc, p) => {
