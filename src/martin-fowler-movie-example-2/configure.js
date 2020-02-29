@@ -16,8 +16,7 @@ const comedyCalculator = calculator => {
   const play = calculator.play
   const audience = performance.audience
 
-  // eslint-disable-next-line no-unused-vars
-  function amountForComedy() {
+  function amount() {
     let amount = 30000
     if (audience > 20) {
       amount += 10000 + 500 * (audience - 20)
@@ -29,7 +28,7 @@ const comedyCalculator = calculator => {
   return {
     play,
     performance,
-    amount: calculator.amount,
+    amount: amount(),
     volumeCredits: calculator.volumeCredits,
   }
 }
