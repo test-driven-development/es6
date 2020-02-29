@@ -1,9 +1,16 @@
 const shallowClone = obj => ({...obj})
 
 const calculatorFactoryMake = (performance, play) => {
-  return performanceCalculator(performance, play)
+  const calculator = performanceCalculator(performance, play)
+  switch (play.type) {
+    case 'tragedy':
+      return tragedyCalculator(calculator)
+    case 'comedy':
+      return comedyCalculator(calculator)
+    default:
+      throw new Error(`unknown type: ${play.type}`)
+  }
 }
-// eslint-disable-next-line no-unused-vars
 const comedyCalculator = calculator => {
   return {
     play: calculator.play,
@@ -12,7 +19,6 @@ const comedyCalculator = calculator => {
     volumeCredits: calculator.volumeCredits,
   }
 }
-// eslint-disable-next-line no-unused-vars
 const tragedyCalculator = calculator => {
   return {
     play: calculator.play,
