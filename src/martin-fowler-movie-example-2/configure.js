@@ -1,5 +1,9 @@
 const shallowClone = obj => ({...obj})
 
+const calculatorFactoryMake = (performance, play) => {
+  return performanceCalculator(performance, play)
+}
+
 function performanceCalculator(performance_, play_) {
   const play = play_
   const performance = performance_
@@ -59,7 +63,7 @@ export function configure(plays, invoice) {
 
   function configurePerformance(p) {
     const performance = shallowClone(p)
-    const calculator = performanceCalculator(performance, playFor(performance))
+    const calculator = calculatorFactoryMake(performance, playFor(performance))
     performance.play = calculator.play
     performance.amount = calculator.amount
     performance.volumeCredits = calculator.volumeCredits
