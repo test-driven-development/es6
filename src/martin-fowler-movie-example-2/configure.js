@@ -25,9 +25,7 @@ const tragedyCalculator = calculator => {
   const audience = performance.audience
 
   function amountForTragedy() {
-    let amount = 40000
-    if (audience > 30) amount += 1000 * (audience - 30)
-    return amount
+    return audience > 30 ? 40000 + 1000 * (audience - 30) : 40000
   }
 
   return {
