@@ -49,10 +49,6 @@ export function configure(plays, invoice) {
   function playFor(performance) {
     return plays[performance.playID]
   }
-  function volumeCreditsFor(performance) {
-    return performanceCalculator(performance, playFor(performance))
-      .volumeCredits
-  }
   function totalVolumeCredits(performances) {
     return performances.reduce((acc, p) => {
       return p.volumeCredits + acc
@@ -69,7 +65,7 @@ export function configure(plays, invoice) {
     const calculator = performanceCalculator(performance, playFor(performance))
     performance.play = calculator.play
     performance.amount = calculator.amount
-    performance.volumeCredits = volumeCreditsFor(performance)
+    performance.volumeCredits = calculator.volumeCredits
     return performance
   }
 
