@@ -3,6 +3,24 @@ const shallowClone = obj => ({...obj})
 const calculatorFactoryMake = (performance, play) => {
   return performanceCalculator(performance, play)
 }
+// eslint-disable-next-line no-unused-vars
+const comedyCalculator = calculator => {
+  return {
+    play: calculator.play,
+    performance: calculator.performance,
+    amount: calculator.amount,
+    volumeCredits: calculator.volumeCredits,
+  }
+}
+// eslint-disable-next-line no-unused-vars
+const tragedyCalculator = calculator => {
+  return {
+    play: calculator.play,
+    performance: calculator.performance,
+    amount: calculator.amount,
+    volumeCredits: calculator.volumeCredits,
+  }
+}
 
 function performanceCalculator(performance_, play_) {
   const play = play_
