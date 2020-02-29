@@ -1,4 +1,4 @@
-const shallowClone = p => ({...p})
+const shallowClone = obj => ({...obj})
 
 export function configure(plays, invoice) {
   function playFor(performance) {
