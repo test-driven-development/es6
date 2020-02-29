@@ -3,6 +3,7 @@ const shallowClone = obj => ({...obj})
 function performanceCalculator(performance_, play_) {
   const play = play_
   const performance = performance_
+
   function amountFor() {
     let result = 0
 
@@ -26,11 +27,21 @@ function performanceCalculator(performance_, play_) {
 
     return result
   }
+  function volumeCreditsFor(performance) {
+    let result = 0
+    result += Math.max(performance['audience'] - 30, 0)
+
+    if (play.type === 'comedy')
+      result += Math.floor(performance['audience'] / 5)
+
+    return result
+  }
 
   return {
     play,
     performance,
     amount: amountFor(),
+    volumeCredits: volumeCreditsFor(performance),
   }
 }
 
