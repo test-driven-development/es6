@@ -51,10 +51,19 @@ function performanceCalculator(performance_, play_) {
   const play = play_
   const performance = performance_
 
-  function volumeCreditsFor() {
+  function volumeCredits() {
     let credits = 0
     credits += Math.max(performance.audience - 30, 0)
-    if (play.type === 'comedy') credits += Math.floor(performance.audience / 5)
+    return credits
+  }
+
+  function volumeCreditsForComedy() {
+    return Math.floor(performance.audience / 5)
+  }
+
+  function volumeCreditsFor() {
+    let credits = volumeCredits()
+    if (play.type === 'comedy') credits += volumeCreditsForComedy()
     return credits
   }
 
