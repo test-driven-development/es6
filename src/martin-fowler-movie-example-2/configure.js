@@ -21,9 +21,7 @@ const comedyCalculator = calculator => {
     const conditionalIncrement = 500 * (audience - 20)
 
     let amount = 30000 + increment
-    if (audience > 20) {
-      amount += 10000 + conditionalIncrement
-    }
+    if (audience > 20) amount += 10000 + conditionalIncrement
     return amount
   }
 
