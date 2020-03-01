@@ -27,7 +27,7 @@ const comedyCalculator = calculator => {
   return {
     play,
     performance,
-    amount: amount,
+    amount,
     volumeCredits: calculator.volumeCredits,
   }
 }
@@ -36,13 +36,13 @@ const tragedyCalculator = calculator => {
   const play = calculator.play
   const audience = performance.audience
 
-  const amountForTragedy = (() =>
+  const amount = (() =>
     audience > 30 ? 40000 + 1000 * (audience - 30) : 40000)()
 
   return {
     play,
     performance,
-    amount: amountForTragedy,
+    amount,
     volumeCredits: calculator.volumeCredits,
   }
 }
