@@ -24,15 +24,13 @@ const comedyCalculator = calculator => {
       ? 30000 + increment + 10000 + conditionalIncrement
       : 30000 + increment)()
 
-  function volumeCreditsForComedy() {
-    return Math.floor(audience / 5)
-  }
+  const volumeCredits = (() => Math.floor(audience / 5))()
 
   return {
     play,
     performance,
     amount,
-    volumeCredits: calculator.volumeCredits + volumeCreditsForComedy(),
+    volumeCredits: calculator.volumeCredits + volumeCredits,
   }
 }
 const tragedyCalculator = calculator => {
