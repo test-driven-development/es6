@@ -48,25 +48,14 @@ const tragedyCalculator = calculator => {
     volumeCredits: calculator.volumeCredits,
   }
 }
-
 function performanceCalculator(performance_, play_) {
   const play = play_
   const performance = performance_
 
-  function volumeCredits() {
-    let credits = 0
-    credits += Math.max(performance.audience - 30, 0)
-    return credits
-  }
-
-  function volumeCreditsFor() {
-    return volumeCredits()
-  }
-
   return {
     play,
     performance,
-    volumeCredits: volumeCreditsFor(),
+    volumeCredits: Math.max(performance.audience - 30, 0),
   }
 }
 
