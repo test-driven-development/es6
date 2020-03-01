@@ -48,10 +48,7 @@ const tragedyCalculator = calculator => {
     volumeCredits: calculator.volumeCredits,
   }
 }
-function performanceCalculator(performance_, play_) {
-  const play = play_
-  const performance = performance_
-
+function performanceCalculator(performance, play) {
   return {
     play,
     performance,
