@@ -51,38 +51,6 @@ function performanceCalculator(performance_, play_) {
   const play = play_
   const performance = performance_
 
-  function amountForComedy() {
-    let amount = 30000
-    if (performance.audience > 20) {
-      amount += 10000 + 500 * (performance.audience - 20)
-    }
-    amount += 300 * performance.audience
-    return amount
-  }
-  function amountForTragedy() {
-    let amount = 40000
-    if (performance.audience > 30) {
-      amount += 1000 * (performance.audience - 30)
-    }
-    return amount
-  }
-
-  function amountFor() {
-    let amount = 0
-
-    switch (play.type) {
-      case 'tragedy':
-        amount = amountForTragedy()
-        break
-      case 'comedy':
-        amount = amountForComedy()
-        break
-      default:
-        throw new Error(`unknown type: ${play.type}`)
-    }
-
-    return amount
-  }
   function volumeCreditsFor() {
     let credits = 0
     credits += Math.max(performance.audience - 30, 0)
@@ -93,7 +61,6 @@ function performanceCalculator(performance_, play_) {
   return {
     play,
     performance,
-    amount: amountFor(),
     volumeCredits: volumeCreditsFor(),
   }
 }
