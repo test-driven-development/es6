@@ -16,14 +16,13 @@ const comedyCalculator = calculator => {
   const play = calculator.play
   const audience = performance.audience
 
-  const amount = () => {
-    const increment = 300 * audience
-    const conditionalIncrement = 500 * (audience - 20)
+  const increment = 300 * audience
+  const conditionalIncrement = 500 * (audience - 20)
 
-    return audience > 20
+  const amount = () =>
+    audience > 20
       ? 30000 + increment + 10000 + conditionalIncrement
       : 30000 + increment
-  }
 
   return {
     play,
